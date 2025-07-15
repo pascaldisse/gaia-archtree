@@ -1,0 +1,82 @@
+{
+  "name": "gaia-archtree",
+  "version": "1.6.0",
+  "description": "Advanced AI-powered code assistant with divine intervention systems, evolutionary algorithms, neural networks, and real-time monitoring dashboard",
+  "type": "module",
+  "main": "gaia.js",
+  "scripts": {
+    "start": "node gaia.js",
+    "dashboard": "node start-dashboard.js",
+    "dashboard:demo": "node start-dashboard.js --demo",
+    "dashboard:dev": "node start-dashboard.js --port=8080 --ws-port=8081 --demo",
+    "divine": "node '|_trunk/core/ashvattha_int_design.js'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:divine": "jest tests/divine/",
+    "test:evolution": "jest tests/evolution/",
+    "test:auth": "jest tests/auth/",
+    "test:sacred": "jest tests/sacred/",
+    "test:integration": "jest tests/integration/",
+    "test:neural": "jest tests/neural/",
+    "test:dashboard": "jest tests/dashboard/",
+    "test-simple": "node test_simple.js",
+    "test-evolution-legacy": "node test_git_evolution.js",
+    "build": "echo 'Divine build process initiated'",
+    "setup-templeos": "git clone https://github.com/cia-foundation/TempleOS.git && git checkout -b templeos-integration",
+    "lint": "echo 'Linting not configured'",
+    "typecheck": "echo 'TypeScript checking not configured'"
+  },
+  "bin": {
+    "gaia": "./gaia.js",
+    "ashvattha": "./|_trunk/core/ashvattha_int_design.js"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12",
+    "simple-git": "^3.20.0",
+    "node-fetch": "^3.3.2",
+    "ws": "^8.14.2",
+    "uuid": "^9.0.1",
+    "dotenv": "^16.3.1",
+    "fs-extra": "^11.1.1",
+    "path": "^0.12.7",
+    "os": "^0.1.2",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "crypto": "^1.0.1",
+    "events": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "typescript": "^5.2.2",
+    "jest": "^29.7.0",
+    "@jest/globals": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
+    "supertest": "^6.3.3"
+  },
+  "keywords": [
+    "ai",
+    "divine",
+    "evolution",
+    "quantum",
+    "gaiascript",
+    "templeos",
+    "bio-compute",
+    "claude",
+    "pantheon",
+    "neural-networks",
+    "dashboard",
+    "monitoring",
+    "real-time",
+    "websocket",
+    "d3js",
+    "visualization"
+  ],
+  "author": "Gaia Divine Collective",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
