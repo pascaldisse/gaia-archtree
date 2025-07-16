@@ -12,12 +12,23 @@ gaia-archtree is a love letter to divine programming - an advanced AI-powered co
 *For all the brilliant minds deemed "crazy" by a world too small to understand.*
 *For those who build temples in silicon and find the sacred in the algorithm.*
 
+## 🚀 What's New
+
+### Latest Features (v1.6.0)
+- ✅ **Zodiac Polarity System**: Celestial guidance for divine intervention based on astrological signs
+- ✅ **Unified Test Framework**: Comprehensive test system with divine auto-fix capabilities
+- ✅ **Fixed God System**: Resolved naming mismatches between Norse/Greek and Indian pantheons
+- ✅ **Test Suite**: Complete test coverage for divine intervention, evolution, and basic functionality
+- ✅ **Seasonal Awareness**: Spring/Summer favors Light realm, Fall/Winter favors Shadow realm
+
 ## Overview
 
 Gaia Code is an interactive CLI tool that enhances Claude Code with:
-- 🔥 **Divine Intervention System**: Automatic code generation through shadow/light god pantheons
-- 🧬 **Git Evolution Engine**: High-performance evolutionary algorithms using git branches
+- 🔥 **Divine Intervention System**: Automatic code generation through 32-god pantheon (16 light + 16 shadow)
+- 🧬 **Git Evolution Engine**: M1-optimized evolutionary algorithms using git branches
+- 🌟 **Zodiac Polarity**: Astrological guidance system for optimal god selection
 - 🔮 **Quantum Entanglement**: Mirror tree synchronization between light and shadow realms
+- 🧪 **Unified Test System**: Comprehensive testing with divine auto-fix capabilities
 - 🎮 **Unity Vision**: Game development from concept art (documentation available)
 - 🔍 **Deep Research**: WebSearch capabilities with latest AI models (documentation available)
 
@@ -40,139 +51,122 @@ node gaia.js status
 node "|_trunk/core/ashvattha_int_design.js" intervene "complex task"
 npm run divine
 
+# Zodiac System Commands
+node gaia.js zodiac                     # Show current zodiac status
+node gaia.js zodiac --seasonal         # Show seasonal transitions
+node gaia.js zodiac --manual Scorpio   # Set zodiac manually
+node gaia.js zodiac --clear            # Clear manual override
+
+# Test Suite Commands
+node test_divine_intervention.js       # Run divine intervention tests
+node test_simple.js                   # Run basic functionality tests
+node test_git_evolution.js           # Run evolution engine tests
+
 # GaiaScript Integration (via ../.gaia compiler)
 ../gaia/compile test.gaia --target=js
 ```
 
 ## Core Components
 
-### Divine Intervention System (`reverse_tree_divine_intervention.js`)
-The primary tool for all coding tasks. Uses a pantheon of 32 gods (16 light, 16 shadow) to automatically generate and evolve code solutions.
+### Divine Intervention System (`|_trunk/core/ashvattha_int_design.js`)
+The primary tool for all coding tasks. Uses a pantheon of 32 gods (16 light, 16 shadow) to automatically generate and evolve code solutions. Features 4-phase execution: task analysis, light god creation, shadow god optimization, and synthesis.
 
-### God Realms System (`src/evolution/GodRealms.js`)
+### God Realms System (`|_trunk/core/GodRealms.js`)
 Dual-tree architecture with:
-- **Overworld**: Zeus, Poseidon, Gaia, Apollo, Athena, Thor, Odin, and more
-- **Underworld**: Hades, Chaos, Loki, Hel, Fenrir, and shadow counterparts
+- **Light Realm (Yggdrasil)**: 16 light gods based on Indian pantheon (Surya, Agni, Vishnu, etc.)
+- **Shadow Realm (Ashvattha)**: 16 shadow gods (Kali, Shiva, Durga, Bhairava, etc.)
+- **God Mapping**: Norse/Greek names mapped to Indian gods for compatibility
 
-### Git Evolution Engine (`src/evolution/GitEvolutionEngine.js`)
+### Zodiac Polarity System (`|_trunk/core/ZodiacPolarity.js`)
+- 🌟 Astrological guidance for divine intervention
+- 📅 Seasonal awareness (Spring/Summer = Light, Fall/Winter = Shadow)
+- ♈-♓ 12 zodiac signs with preferred god assignments
+- 🔄 Special handling for equinoxes and solstices
+
+### Git Evolution Engine (`|_trunk/heartwood/GitEvolutionEngine.js`)
 - M1-optimized multiprocessing (10 cores)
 - Real-time evolution feedback
 - Automatic fitness evaluation and merging
+- Mutation branch creation and management
 
-### Authentication (`src/auth/AuthManager.js`)
-- DeepInfra backend integration
-- OAuth support
+### Authentication (`|_trunk/auth/AuthManager.js`)
+- Multiple provider support (DeepInfra, Anthropic, OpenAI, Local, Divine)
+- OAuth integration
 - Provider switching capabilities
+- Credential management
+
+### Test System (`tests.json`)
+- Unified test configuration with auto-fix rules
+- Test categories: divine, evolution, auth, sacred, integration
+- Divine intervention auto-fix capabilities
+- Comprehensive test coverage
 
 ## Divine Pantheon System
 
-### Overworld Realms (Light Gods) 🌟
+### Actual Implemented Gods (32-God Pantheon)
 
-#### Supreme Light Gods
-- **Zeus** ⚡ - Divine Leadership & System Architecture
-  - Domain: Supreme authority, system orchestration, divine command hierarchy
-  - Powers: Ultimate decision making, cosmic order, architectural vision
-  - Function: Primary system architect and divine coordinator
+The system uses an Indian pantheon with mapping from Norse/Greek names for compatibility:
 
-- **Gaia** 🌍 - Earth Mother & Core Foundation  
-  - Domain: Foundational systems, earth wisdom, natural harmony
-  - Powers: Core infrastructure, environmental integration, life force
-  - Function: System foundation and natural computation integration
+### Light Realm (Yggdrasil Branches) ☀️ - 16 Gods
 
-#### Major Light Gods
-- **Poseidon** 🌊 - Data Flows & Network Seas
-  - Domain: Data streaming, network protocols, information currents
-  - Powers: Data orchestration, network topology, flow optimization
-  - Function: Data architecture and network management
+**Indian Light Gods in GodRealms.js:**
+1. **Surya** - Sun god (mapped from Freyr)
+2. **Agni** - Fire god (mapped from Modi)
+3. **Vayu** - Wind god (mapped from Vidar)
+4. **Varuna** - Water/justice god (mapped from Tyr)
+5. **Prithvi** - Earth goddess
+6. **Akasha** - Space/ether
+7. **Soma** - Moon god (mapped from Baldr)
+8. **Marut** - Storm god (mapped from Heimdall)
+9. **Ashwin** - Twin healers (mapped from Hermes)
+10. **Rudra** - Storm/hunt god (mapped from Thor)
+11. **Vishnu** - Preserver (mapped from Odin)
+12. **Brahma** - Creator
+13. **Saraswati** - Wisdom goddess (mapped from Bragi)
+14. **Lakshmi** - Prosperity goddess
+15. **Ganga** - River goddess
+16. **Tulasi** - Sacred plant goddess
 
-- **Apollo** ☀️ - Code Illumination & Divine Inspiration
-  - Domain: Code clarity, algorithmic beauty, divine programming insight  
-  - Powers: Code optimization, elegant solutions, illuminated debugging
-  - Function: Code quality and algorithmic excellence
+### Shadow Realm (Ashvattha Roots) 🌙 - 16 Gods
 
-- **Athena** 🦉 - Strategic Wisdom & Battle-Tested Code
-  - Domain: Strategic planning, defensive programming, wisdom systems
-  - Powers: Strategic architecture, defensive security, wise decisions
-  - Function: Security architecture and strategic planning
+**Indian Shadow Gods in GodRealms.js:**
+1. **Kali** - Time/destruction goddess
+2. **Shiva** - Destroyer/transformer
+3. **Durga** - Protective warrior goddess
+4. **Bhairava** - Fierce form of Shiva
+5. **Rahu** - Eclipse demon/hidden dependencies
+6. **Ketu** - Tail of the demon
+7. **Yama** - Death god/process termination
+8. **Nirrti** - Goddess of decay
+9. **Alakshmi** - Misfortune goddess
+10. **Jyestha** - Elder goddess
+11. **Mara** - Temptation demon
+12. **Apasmara** - Ignorance demon
+13. **Mahakala** - Great time/cosmic cycles
+14. **Chandi** - Fierce goddess
+15. **Tamas** - Darkness principle
+16. **Avidya** - Ignorance/illusion
 
-- **Thor** ⚒️ - Robust Engineering & System Strength
-  - Domain: System resilience, robust engineering, powerful performance
-  - Powers: High-performance computing, system durability, strength testing
-  - Function: Performance optimization and system robustness
+### God Selection System
 
-- **Odin** 👁️ - All-Seeing Monitoring & Deep Knowledge
-  - Domain: System monitoring, deep insights, comprehensive observation
-  - Powers: Complete system visibility, knowledge aggregation, foresight
-  - Function: Monitoring systems and knowledge management
+The divine intervention system maps task keywords to appropriate gods:
 
-- **Artemis** 🏹 - Precise Targeting & Hunt Optimization
-  - Domain: Precision algorithms, targeted optimization, pursuit systems
-  - Powers: Accurate targeting, optimal pathfinding, focused execution
-  - Function: Algorithm precision and optimization targeting
+**Task Mappings:**
+- **Testing/Debugging** → Thor/Rudra (light) + Mara (shadow)
+- **Security** → Heimdall/Marut (light) + Durga (shadow)
+- **Performance** → Thor/Rudra (light) + Mahakala (shadow)
+- **Cleanup** → Vidar/Vayu (light) + Kali (shadow)
+- **Refactoring** → Modi/Agni (light) + Shiva (shadow)
+- **Architecture** → Odin/Vishnu (light) + Avidya (shadow)
+- **Documentation** → Bragi/Saraswati (light) + Yama (shadow)
 
-#### Minor Light Gods
-- **Hermes** 📨 - Message Systems & Communication Protocols
-- **Hephaestus** 🔥 - System Forging & Build Engineering  
-- **Demeter** 🌾 - Growth Systems & Organic Development
-- **Aphrodite** 💖 - User Experience & Interface Beauty
-- **Dionysus** 🍇 - Creative Chaos & Innovative Solutions
-- **Ares** ⚔️ - Aggressive Performance & Combat Testing
-- **Hestia** 🏛️ - Core Services & System Hearth
-- **Iris** 🌈 - Interface Bridges & Communication Channels
+### Zodiac Integration
 
-### Underworld Realms (Shadow Gods) 🌑
-
-#### Supreme Shadow Gods
-- **Hades** 💀 - Hidden Systems & Deep Architecture
-  - Domain: Hidden processes, deep system layers, shadow operations
-  - Powers: Invisible infrastructure, background processes, depth management
-  - Function: Backend architecture and hidden system management
-
-- **Chaos** 🌪️ - Primordial Entropy & System Evolution
-  - Domain: Controlled chaos, system evolution, entropy management
-  - Powers: Creative destruction, evolutionary pressure, controlled randomness
-  - Function: System evolution and adaptive chaos
-
-#### Major Shadow Gods
-- **Loki** 🃏 - Adaptive Trickery & System Mutation
-  - Domain: System adaptation, clever solutions, transformative changes
-  - Powers: Shape-shifting algorithms, adaptive mutations, clever workarounds
-  - Function: System adaptation and creative problem solving
-
-- **Hel** ⚰️ - System Resurrection & Error Recovery
-  - Domain: System recovery, error handling, resurrection protocols  
-  - Powers: System restoration, error correction, graceful degradation
-  - Function: Error handling and system recovery
-
-- **Fenrir** 🐺 - Consuming Optimization & Aggressive Cleanup
-  - Domain: Resource consumption, aggressive optimization, system cleanup
-  - Powers: Resource optimization, aggressive cleanup, performance hunting
-  - Function: Resource management and performance optimization
-
-- **Níðhöggr** 🐉 - Root System Gnawing & Deep Analysis
-  - Domain: Root system analysis, deep structural examination, foundation testing
-  - Powers: Deep system penetration, structural analysis, root access
-  - Function: Deep system analysis and foundational testing
-
-- **Jörmungandr** 🐍 - World-Encircling Integration & Global Systems
-  - Domain: Global system integration, world-spanning networks, complete enclosure
-  - Powers: Global coordination, universal integration, complete system wrapping
-  - Function: Global system integration and universal connectivity
-
-- **Surtr** 🔥 - Destructive Testing & System Renewal
-  - Domain: Destructive testing, system renewal, purification through fire
-  - Powers: Complete system testing, renewal cycles, purification protocols
-  - Function: Comprehensive testing and system renewal
-
-#### Minor Shadow Gods
-- **Morrigan** 🦅 - Battle Analytics & Conflict Resolution
-- **Set** 🌪️ - Disruption Testing & Chaos Engineering
-- **Kali** ⚡ - Destructive Transformation & Change Management
-- **Shiva** 🕉️ - Creative Destruction & Renewal Cycles
-- **Thanatos** 💤 - Process Termination & Cleanup Management
-- **Nyx** 🌙 - Night Operations & Background Processing
-- **Erebus** 🕳️ - Void Management & Empty State Handling
-- **Nemesis** ⚖️ - Justice Systems & Retribution Protocols
+Each zodiac sign has preferred gods:
+- **Fire Signs** (Aries, Leo, Sagittarius) → Agni, Rudra, Kali
+- **Earth Signs** (Taurus, Virgo, Capricorn) → Prithvi, Varuna, Bhairava
+- **Air Signs** (Gemini, Libra, Aquarius) → Vayu, Marut, Rahu
+- **Water Signs** (Cancer, Scorpio, Pisces) → Varuna, Ganga, Yama
 
 ### Dual-Tree Architecture
 
@@ -309,6 +303,45 @@ node "|_trunk/core/TempleOSRandomBeacon.js"   # Generate blessed random seeds
 # Divine chaos operations: RANDOM_GENESIS, APOCALYPTIC_RESTART, IMPOSSIBLE_FUSION
 # TempleOS-inspired random beacon with HolyC algorithms and cosmic alignment
 # Pure randomness as the creative force - no safety limits, reality breaks become features
+```
+
+## Project Structure
+
+```
+gaia-archtree/
+├── gaia.js                    # Main CLI entry point with interactive mode
+├── package.json               # Project configuration
+├── tests.json                 # Unified test configuration with auto-fix rules
+├── test_*.js                  # Test suite files
+│
+├── ^_corona/                  # Yggdrasil canopy (Norse light branches) ☀️
+│   └── branches/              
+│       └── lightGods.js       # 16 light god definitions (Greek/Norse themed)
+│
+├── |_trunk/                   # Gaia core coordination 🌳
+│   ├── core/                  # Central coordination systems
+│   │   ├── GodRealms.js       # 32-god pantheon management (Indian gods)
+│   │   ├── TreeCoordinator.js # Dual-tree coordination
+│   │   ├── ZodiacPolarity.js  # Astrological guidance system
+│   │   ├── ashvattha_int_design.js # Advanced divine intervention
+│   │   ├── Logger.js          # Divine logging system
+│   │   └── GaiaTranslator.js  # GaiaScript translation
+│   │
+│   ├── auth/                  # Authentication systems
+│   │   └── AuthManager.js     # Multi-provider authentication
+│   │
+│   └── heartwood/             # Git evolution engine
+│       ├── GitEvolutionEngine.js    # M1-optimized evolution
+│       ├── WorktreeManager.js       # Parallel evolution worktrees
+│       ├── MutationBrancher.js      # Automated git branches
+│       ├── EvolutionMerger.js       # Intelligent merging
+│       ├── EvolutionBirther.js      # Git-based birthing
+│       └── SacredGitHooks.js        # Divine git hooks
+│
+└── √_radix/                   # Ashvattha roots (Indian shadow realm) 🌙
+    └── roots/
+        └── shadowGods.js      # 16 shadow god definitions
+
 ```
 
 ## Terry's Sacred Legacy
