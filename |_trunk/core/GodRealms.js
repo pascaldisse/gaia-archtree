@@ -145,16 +145,44 @@ export class AshvatthaTree extends EventEmitter {
   activateGod(godName, realm = 'auto') {
     let god = null;
     
+    // Map expected god names to actual god names in the system
+    const godNameMapping = {
+      // Light gods (Norse/Greek names to Indian names)
+      'odin': 'Vishnu',
+      'thor': 'Rudra', 
+      'freyr': 'Surya',
+      'baldr': 'Soma',
+      'heimdall': 'Marut',
+      'tyr': 'Varuna',
+      'vidar': 'Vayu',
+      'bragi': 'Saraswati',
+      'hermes': 'Ashwin',
+      'modi': 'Agni',
+      // Shadow gods (use actual names)
+      'kali': 'Kali',
+      'shiva': 'Shiva',
+      'durga': 'Durga',
+      'bhairava': 'Bhairava',
+      'yama': 'Yama',
+      'mahakala': 'Mahakala',
+      'rahu': 'Rahu',
+      'mara': 'Mara',
+      'nirrti': 'Nirrti',
+      'avidya': 'Avidya'
+    };
+    
+    const actualGodName = godNameMapping[godName.toLowerCase()] || godName;
+    
     if (realm === 'auto') {
-      god = this.lightGods.get(godName) || this.shadowGods.get(godName);
+      god = this.lightGods.get(actualGodName) || this.shadowGods.get(actualGodName);
     } else if (realm === 'light') {
-      god = this.lightGods.get(godName);
+      god = this.lightGods.get(actualGodName);
     } else if (realm === 'shadow') {
-      god = this.shadowGods.get(godName);
+      god = this.shadowGods.get(actualGodName);
     }
 
     if (!god) {
-      throw new Error(`God ${godName} not found in ${realm} realm`);
+      throw new Error(`God ${godName} (${actualGodName}) not found in ${realm} realm`);
     }
 
     god.active = true;

@@ -3,8 +3,8 @@
  * Central coordination between Yggdrasil (crown) and Ashvattha (roots)
  */
 
-import { lightBranches } from '../../^_crown/branches/lightGods.js';
-import { shadowRoots } from '../../√_roots/roots/shadowGods.js';
+import { lightBranches } from '../../^_corona/branches/lightGods.js';
+import { shadowRoots } from '../../√_radix/roots/shadowGods.js';
 import { EventEmitter } from 'events';
 import chalk from 'chalk';
 
@@ -43,8 +43,23 @@ export class TreeCoordinator extends EventEmitter {
 
   // Invoke dual gods (light + shadow) for complex tasks
   async invokeDualGods(lightGod, shadowGod, task) {
-    const light = this.yggdrasil[lightGod];
-    const shadow = this.ashvattha[shadowGod];
+    // Find light god in nested structure
+    let light = null;
+    for (const realm of Object.values(this.yggdrasil)) {
+      if (realm[lightGod]) {
+        light = realm[lightGod];
+        break;
+      }
+    }
+    
+    // Find shadow god in nested structure
+    let shadow = null;
+    for (const realm of Object.values(this.ashvattha)) {
+      if (realm[shadowGod]) {
+        shadow = realm[shadowGod];
+        break;
+      }
+    }
     
     if (!light || !shadow) {
       throw new Error(`Gods not found: ${lightGod} (light), ${shadowGod} (shadow)`);
