@@ -13,6 +13,7 @@ import { treeCoordinator } from './|_trunk/core/TreeCoordinator.js';
 import GitEvolutionEngine from './|_trunk/heartwood/GitEvolutionEngine.js';
 import { authManager } from './|_trunk/auth/AuthManager.js';
 import { logger, setupGlobalErrorHandling } from './|_trunk/core/Logger.js';
+import { zodiacPolarity } from './|_trunk/core/ZodiacPolarity.js';
 
 // Initialize core systems
 const evolutionEngine = new GitEvolutionEngine();
@@ -46,24 +47,45 @@ const displayHeader = () => {
 const divineIntervention = async (task) => {
   console.log(chalk.magenta('🔮 Initiating Divine Intervention...'));
   
+  // Get current zodiac information
+  const zodiacStatus = zodiacPolarity.getCurrentStatus();
+  const preferredGods = zodiacPolarity.getPreferredGods();
+  
+  console.log(chalk.cyan(`🌟 Current Zodiac: ${zodiacStatus.zodiac.symbol} ${zodiacStatus.zodiac.name} (${zodiacStatus.polarity})`));
+  console.log(chalk.gray(`   Dominant Tree: ${zodiacStatus.dominantTree === 'light' ? '☀️ Light' : '🌙 Shadow'} Realm`));
+  
+  const choices = [
+    { name: '⚡ Thor - Testing & Debugging', value: 'thor' },
+    { name: '🦉 Odin - Wisdom & Architecture', value: 'odin' },
+    { name: '🌊 Freyr - Growth & Optimization', value: 'freyr' },
+    { name: '🔥 Kali - Destruction & Cleanup', value: 'kali' },
+    { name: '🕉️  Shiva - Transformation', value: 'shiva' },
+    { name: '🛡️  Durga - Protection & Security', value: 'durga' },
+    { name: '🎯 Auto-select based on task', value: 'auto' },
+    { name: '🌟 Zodiac-guided selection', value: 'zodiac' }
+  ];
+
   const { godChoice } = await inquirer.prompt([{
     type: 'list',
     name: 'godChoice',
     message: 'Select divine guidance:',
-    choices: [
-      { name: '⚡ Thor - Testing & Debugging', value: 'thor' },
-      { name: '🦉 Odin - Wisdom & Architecture', value: 'odin' },
-      { name: '🌊 Freyr - Growth & Optimization', value: 'freyr' },
-      { name: '🔥 Kali - Destruction & Cleanup', value: 'kali' },
-      { name: '🕉️  Shiva - Transformation', value: 'shiva' },
-      { name: '🛡️  Durga - Protection & Security', value: 'durga' },
-      { name: '🎯 Auto-select based on task', value: 'auto' }
-    ]
+    choices
   }]);
 
   let selectedGod = godChoice;
-  if (godChoice === 'auto') {
-    // Auto-select god based on task keywords
+  
+  if (godChoice === 'zodiac') {
+    // Select based on current zodiac's preferred gods
+    const dominantGods = preferredGods.dominant;
+    if (dominantGods.length > 0) {
+      selectedGod = dominantGods[Math.floor(Math.random() * dominantGods.length)];
+      console.log(chalk.yellow(`🌟 Zodiac-selected: ${selectedGod} (${zodiacStatus.dominantTree} realm)`));
+    } else {
+      selectedGod = 'vishnu'; // Fallback
+      console.log(chalk.yellow(`🌟 Zodiac fallback: ${selectedGod}`));
+    }
+  } else if (godChoice === 'auto') {
+    // Auto-select god based on task keywords and zodiac influence
     const taskLower = task.toLowerCase();
     if (taskLower.includes('test') || taskLower.includes('debug')) {
       selectedGod = 'thor';
@@ -74,7 +96,13 @@ const divineIntervention = async (task) => {
     } else if (taskLower.includes('refactor') || taskLower.includes('change')) {
       selectedGod = 'shiva';
     } else {
-      selectedGod = 'odin'; // Default to wisdom
+      // Use zodiac-preferred god as default
+      const dominantGods = preferredGods.dominant;
+      if (dominantGods.length > 0) {
+        selectedGod = dominantGods[0];
+      } else {
+        selectedGod = 'vishnu'; // Final fallback
+      }
     }
     console.log(chalk.yellow(`🎯 Auto-selected: ${selectedGod}`));
   }
@@ -127,6 +155,75 @@ const runEvolution = async (iterations = 3) => {
   console.log(chalk.cyan(`   Merged Mutations: ${stats.mergedMutations}`));
   console.log(chalk.cyan(`   Average Fitness: ${stats.averageFitness.toFixed(2)}`));
   console.log(chalk.cyan(`   M1 Optimized: ${stats.isM1Optimized ? '✅' : '❌'}`));
+};
+
+// Zodiac System Menu
+const handleZodiacMenu = async () => {
+  const zodiacStatus = zodiacPolarity.getCurrentStatus();
+  
+  console.log(chalk.cyan('\n🌟 Zodiac System Status'));
+  console.log(chalk.yellow(`   Current: ${zodiacStatus.zodiac.symbol} ${zodiacStatus.zodiac.name} (${zodiacStatus.polarity})`));
+  console.log(chalk.gray(`   Tree Control: ${zodiacStatus.dominantTree === 'light' ? '☀️ Light' : '🌙 Shadow'} Realm`));
+  
+  if (zodiacStatus.manualOverride) {
+    console.log(chalk.red('   🎯 Manual Override Active'));
+  }
+  
+  const { zodiacAction } = await inquirer.prompt([{
+    type: 'list',
+    name: 'zodiacAction',
+    message: 'Zodiac system options:',
+    choices: [
+      { name: '🌟 Show detailed zodiac information', value: 'show' },
+      { name: '🌍 Show seasonal transitions', value: 'seasonal' },
+      { name: '🎯 Set zodiac manually (testing)', value: 'manual' },
+      { name: '🔄 Clear manual override', value: 'clear' },
+      { name: '⬅️  Back to main menu', value: 'back' }
+    ]
+  }]);
+  
+  try {
+    switch (zodiacAction) {
+      case 'show':
+        zodiacPolarity.displayZodiacInfo();
+        break;
+      case 'seasonal':
+        const seasonalInfo = zodiacPolarity.getSeasonalInfo();
+        console.log(chalk.cyan('\n🌍 Seasonal Information:'));
+        console.log(`   Current Season: ${seasonalInfo.currentSeason}`);
+        console.log(`   Zodiac Sign: ${seasonalInfo.zodiacSign}`);
+        console.log(`   Polarity: ${seasonalInfo.polarity}`);
+        console.log(`   Tree Control: ${seasonalInfo.treeControl}`);
+        if (seasonalInfo.transition.isTransition) {
+          console.log(chalk.red(`   🔄 SEASONAL TRANSITION: ${seasonalInfo.transition.transitionName}`));
+        }
+        console.log(`   Next Transition: ${seasonalInfo.nextTransition.name} in ${seasonalInfo.nextTransition.daysUntil} days`);
+        break;
+      case 'manual':
+        const { zodiacName } = await inquirer.prompt([{
+          type: 'list',
+          name: 'zodiacName',
+          message: 'Select zodiac sign:',
+          choices: [
+            'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+            'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
+          ]
+        }]);
+        const newZodiac = zodiacPolarity.setZodiacManually(zodiacName);
+        console.log(chalk.green(`✅ Zodiac set to: ${newZodiac.symbol} ${newZodiac.name} (${newZodiac.polarity})`));
+        console.log(chalk.yellow(`   Tree Control: ${newZodiac.treeControl} realm`));
+        break;
+      case 'clear':
+        zodiacPolarity.clearManualOverride();
+        const currentStatus = zodiacPolarity.getCurrentStatus();
+        console.log(chalk.green(`✅ Returned to automatic: ${currentStatus.zodiac.symbol} ${currentStatus.zodiac.name}`));
+        break;
+      case 'back':
+        return;
+    }
+  } catch (error) {
+    console.error(chalk.red(`❌ Zodiac error: ${error.message}`));
+  }
 };
 
 // Authentication Menu
@@ -226,6 +323,7 @@ const interactiveMode = async () => {
         { name: '🔮 Divine Intervention', value: 'divine' },
         { name: '🧬 Run Evolution', value: 'evolution' },
         { name: '📊 Show Status', value: 'status' },
+        { name: '🌟 Zodiac System', value: 'zodiac' },
         { name: '🌳 Tree Balance', value: 'balance' },
         { name: '🔐 Authentication', value: 'auth' },
         { name: '⚙️  Settings', value: 'settings' },
@@ -258,6 +356,10 @@ const interactiveMode = async () => {
           
         case 'status':
           showStatus();
+          break;
+          
+        case 'zodiac':
+          await handleZodiacMenu();
           break;
           
         case 'balance':
@@ -376,6 +478,43 @@ program
       }
     } catch (error) {
       console.error(chalk.red(`❌ Provider command failed: ${error.message}`));
+    }
+  });
+
+program
+  .command('zodiac')
+  .description('Zodiac polarity system commands')
+  .option('-s, --seasonal', 'show seasonal information')
+  .option('-m, --manual <zodiac>', 'set zodiac manually')
+  .option('-c, --clear', 'clear manual override')
+  .action(async (options) => {
+    displayHeader();
+    
+    try {
+      if (options.seasonal) {
+        const seasonalInfo = zodiacPolarity.getSeasonalInfo();
+        console.log(chalk.cyan('\n🌍 Seasonal Information:'));
+        console.log(`   Current Season: ${seasonalInfo.currentSeason}`);
+        console.log(`   Zodiac Sign: ${seasonalInfo.zodiacSign}`);
+        console.log(`   Polarity: ${seasonalInfo.polarity}`);
+        console.log(`   Tree Control: ${seasonalInfo.treeControl}`);
+        if (seasonalInfo.transition.isTransition) {
+          console.log(chalk.red(`   🔄 SEASONAL TRANSITION: ${seasonalInfo.transition.transitionName}`));
+        }
+        console.log(`   Next Transition: ${seasonalInfo.nextTransition.name} in ${seasonalInfo.nextTransition.daysUntil} days`);
+      } else if (options.manual) {
+        const newZodiac = zodiacPolarity.setZodiacManually(options.manual);
+        console.log(chalk.green(`✅ Zodiac set to: ${newZodiac.symbol} ${newZodiac.name} (${newZodiac.polarity})`));
+        console.log(chalk.yellow(`   Tree Control: ${newZodiac.treeControl} realm`));
+      } else if (options.clear) {
+        zodiacPolarity.clearManualOverride();
+        const currentStatus = zodiacPolarity.getCurrentStatus();
+        console.log(chalk.green(`✅ Returned to automatic: ${currentStatus.zodiac.symbol} ${currentStatus.zodiac.name}`));
+      } else {
+        zodiacPolarity.displayZodiacInfo();
+      }
+    } catch (error) {
+      console.error(chalk.red(`❌ Zodiac error: ${error.message}`));
     }
   });
 
