@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "project": "gaia-archtree",
+    "version": "1.0.0",
+    "created": "2025-07-16T10:04:00.000Z",
+    "description": "Unified test system for Gaia Archtree divine intervention system",
+    "creator": "Divine Intervention Engine (Odin ☀️ + Shiva 🌙)",
+    "autoFix": true
+  },
+  "testCategories": {
+    "divine": {
+      "description": "Divine intervention system tests",
+      "priority": "high",
+      "testFile": "test_divine_intervention.js"
+    },
+    "simple": {
+      "description": "Basic functionality tests",
+      "priority": "medium", 
+      "testFile": "test_simple.js"
+    },
+    "evolution": {
+      "description": "Git evolution engine tests",
+      "priority": "high",
+      "testFile": "test_git_evolution.js"
+    },
+    "auth": {
+      "description": "Authentication system tests",
+      "priority": "medium",
+      "testFile": "test_auth.js"
+    },
+    "sacred": {
+      "description": "Sacred git hooks tests",
+      "priority": "high",
+      "testFile": "test_sacred_hooks.js"
+    },
+    "integration": {
+      "description": "Integration tests for full system",
+      "priority": "high",
+      "testFile": "test_integration.js"
+    }
+  },
+  "tests": [
+    {
+      "id": "divine_001",
+      "name": "Basic Divine Intervention",
+      "category": "divine",
+      "input": {
+        "task": "create simple function",
+        "complexity": "low",
+        "gods": { "light": "odin", "shadow": "shiva" }
+      },
+      "expectedOutput": {
+        "status": "completed",
+        "steps": ["light", "shadow", "synthesis"],
+        "finalResult": "object",
+        "balance": "number"
+      },
+      "autoFix": true
+    },
+    {
+      "id": "divine_002", 
+      "name": "God Selection System",
+      "category": "divine",
+      "input": {
+        "task": "testing framework",
+        "expectedGods": { "light": "thor", "shadow": "mara" }
+      },
+      "expectedOutput": {
+        "lightGod": "thor",
+        "shadowGod": "mara",
+        "domain": "testing"
+      },
+      "autoFix": true
+    },
+    {
+      "id": "evolution_001",
+      "name": "Git Evolution Basic",
+      "category": "evolution",
+      "input": {
+        "task": "optimize function",
+        "iterations": 3,
+        "mutationType": "optimization"
+      },
+      "expectedOutput": {
+        "mutationBranch": "string",
+        "fitness": "number",
+        "improvements": "array"
+      },
+      "autoFix": true
+    },
+    {
+      "id": "auth_001",
+      "name": "Authentication Manager",
+      "category": "auth",
+      "input": {
+        "provider": "deepinfra",
+        "action": "login"
+      },
+      "expectedOutput": {
+        "currentProvider": "deepinfra",
+        "authenticated": true
+      },
+      "autoFix": true
+    },
+    {
+      "id": "simple_001",
+      "name": "System Initialization",
+      "category": "simple",
+      "input": {
+        "command": "node gaia.js --version"
+      },
+      "expectedOutput": {
+        "version": "1.0.0",
+        "systems": ["gods", "evolution", "auth"]
+      },
+      "autoFix": true
+    },
+    {
+      "id": "sacred_001",
+      "name": "Sacred Git Hooks",
+      "category": "sacred",
+      "input": {
+        "hook": "pre-commit",
+        "action": "install"
+      },
+      "expectedOutput": {
+        "installed": true,
+        "hooks": ["pre-commit", "post-commit", "pre-push"]
+      },
+      "autoFix": true
+    },
+    {
+      "id": "integration_001",
+      "name": "Full System Integration",
+      "category": "integration",
+      "input": {
+        "task": "create and test complex function",
+        "useEvolution": true,
+        "requireAuth": false
+      },
+      "expectedOutput": {
+        "divineIntervention": "completed",
+        "evolution": "completed",
+        "testsPassed": true,
+        "finalBalance": "number"
+      },
+      "autoFix": true
+    }
+  ],
+  "autoFixRules": {
+    "divineIntervention": {
+      "missingGods": "Create god mapping if gods not found",
+      "authFailure": "Skip auth if no config found",
+      "synthesisError": "Use basic synthesis if complex fails"
+    },
+    "evolution": {
+      "branchExists": "Use existing branch or create new",
+      "fitnessFailure": "Use default fitness calculation",
+      "mergeConflict": "Use automatic conflict resolution"
+    },
+    "general": {
+      "timeout": "Extend timeout for complex operations",
+      "networkError": "Retry with exponential backoff",
+      "fileNotFound": "Create missing files with templates"
+    }
+  },
+  "runConfiguration": {
+    "defaultTimeout": 30000,
+    "maxRetries": 3,
+    "parallelTests": true,
+    "autoFixEnabled": true,
+    "reportFormat": "json",
+    "outputFile": "test-results.json"
+  }
+}
